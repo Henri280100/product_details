@@ -156,107 +156,134 @@ export default function ProductDetails() {
           transition={{ duration: 0.3 }}
         >
           <div className="mt-8 grid grid-cols-3 gap-8">
-            <Card className="col-span-2">
-              <CardContent className="p-6">
-                <Tabs defaultValue="specifications">
-                  <TabsList>
-                    <TabsTrigger value="specifications">
-                      Specifications
-                    </TabsTrigger>
+            <AnimatePresence>
+              <Card className="col-span-2">
+                <CardContent className="p-6">
+                  <Tabs defaultValue="specifications">
+                    <TabsList>
+                      <TabsTrigger value="specifications">
+                        Specifications
+                      </TabsTrigger>
 
-                    <TabsTrigger value="reviews">Reviews</TabsTrigger>
-                  </TabsList>
+                      <TabsTrigger value="reviews">Reviews</TabsTrigger>
+                    </TabsList>
 
-                  <TabsContent value="specifications">
-                    <h3 className="text-lg font-semibold mb-4">
-                      Product Specifications
-                    </h3>
+                    <TabsContent value="specifications">
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <h3 className="text-lg font-semibold mb-4">
+                          Product Specifications
+                        </h3>
 
-                    <table className="min-w-full border-collapse border border-gray-300">
-                      <thead>
-                        <tr className="bg-gray-100">
-                          <th className="border border-gray-300 px-4 py-2 text-left">
-                            Specification
-                          </th>
+                        <table className="min-w-full border-collapse border border-gray-300">
+                          <thead>
+                            <tr className="bg-gray-100">
+                              <th className="border border-gray-300 px-4 py-2 text-left">
+                                Specification
+                              </th>
 
-                          <th className="border border-gray-300 px-12 py-2 text-left">
-                            Value
-                          </th>
+                              <th className="border border-gray-300 px-12 py-2 text-left">
+                                Value
+                              </th>
 
-                          <th className="border border-gray-300 px-4 py-2 text-left">
-                            Guarantee
-                          </th>
-                        </tr>
-                      </thead>
+                              <th className="border border-gray-300 px-4 py-2 text-left">
+                                Guarantee
+                              </th>
+                            </tr>
+                          </thead>
 
-                      <tbody>
-                        {specifications.map((spec, index) => (
-                          <tr key={index} className="hover:bg-gray-50">
-                            <td className="border border-gray-300 px-4 py-2">
-                              {spec.name}
-                            </td>
+                          <tbody>
+                            {specifications.map((spec, index) => (
+                              <tr key={index} className="hover:bg-gray-50">
+                                <td className="border border-gray-300 px-4 py-2">
+                                  {spec.name}
+                                </td>
 
-                            <td className="border border-gray-300 px-14 py-2">
-                              {spec.value}
-                            </td>
+                                <td className="border border-gray-300 px-14 py-2">
+                                  {spec.value}
+                                </td>
 
-                            <td className="border border-gray-300 px-4 py-2">
-                              {spec.guarantee}
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                    <Separator className="bg-neutral-900 my-4" />
-                    <div className="px-1">
-                      <h3 className="text-lg font-semibold mb-4">
-                        Product Review
-                      </h3>
-                      <p className="text-gray-600">
-                        The TechPro Gaming Laptop X1 is a powerhouse of
-                        performance, offering exceptional gaming and
-                        productivity capabilities. With its high-refresh-rate
-                        display and powerful graphics card, it delivers smooth
-                        and immersive gameplay. The build quality is solid, and
-                        the keyboard is comfortable for long gaming sessions.
-                        While the fan noise can be noticeable under heavy load,
-                        the cooling system effectively manages heat. Overall,
-                        it's an excellent choice for gamers and power users
-                        alike.
-                      </p>
-                    </div>
-                  </TabsContent>
+                                <td className="border border-gray-300 px-4 py-2">
+                                  {spec.guarantee}
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
 
-                  <TabsContent value="reviews">
-                    {reviews.map((review) => (
-                      <div key={review.id}>
-                        <div className="flex items-center mb-2">
-                          <Avatar className="h-10 w-10">
-                            <AvatarImage
-                              src={`https://i.pravatar.cc/40?u=${review.id}`}
-                            />
-                            <AvatarFallback>{review.author[0]}</AvatarFallback>
-                          </Avatar>
-                          <div className="ml-4">
-                            <p className="font-semibold">{review.author}</p>
-                            <div className="flex">
-                              {[...Array(review.rating)].map((_, i) => (
-                                <Star
-                                  key={i}
-                                  className="w-4 h-4 text-yellow-400 fill-current"
-                                />
-                              ))}
-                            </div>
-                          </div>
+                        <Separator className="bg-neutral-900 my-4" />
+
+                        <div className="px-1">
+                          <h3 className="text-lg font-semibold mb-4">
+                            Product Review
+                          </h3>
+
+                          <p className="text-gray-600">
+                            The TechPro Gaming Laptop X1 is a powerhouse of
+                            performance, offering exceptional gaming and
+                            productivity capabilities. With its
+                            high-refresh-rate display and powerful graphics
+                            card, it delivers smooth and immersive gameplay. The
+                            build quality is solid, and the keyboard is
+                            comfortable for long gaming sessions. While the fan
+                            noise can be noticeable under heavy load, the
+                            cooling system effectively manages heat. Overall,
+                            it's an excellent choice for gamers and power users
+                            alike.
+                          </p>
                         </div>
-                        <p className="text-gray-600">{review.comment}</p>
-                        <Separator className="my-4" />
-                      </div>
-                    ))}
-                  </TabsContent>
-                </Tabs>
-              </CardContent>
-            </Card>
+                      </motion.div>
+                    </TabsContent>
+
+                    <TabsContent value="reviews">
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        {reviews.map((review) => (
+                          <div key={review.id}>
+                            <div className="flex items-center mb-2">
+                              <Avatar className="h-10 w-10">
+                                <AvatarImage
+                                  src={`https://i.pravatar.cc/40?u=${review.id}`}
+                                />
+
+                                <AvatarFallback>
+                                  {review.author[0]}
+                                </AvatarFallback>
+                              </Avatar>
+
+                              <div className="ml-4">
+                                <p className="font-semibold">{review.author}</p>
+
+                                <div className="flex">
+                                  {[...Array(review.rating)].map((_, i) => (
+                                    <Star
+                                      key={i}
+                                      className="w-4 h-4 text-yellow-400 fill-current"
+                                    />
+                                  ))}
+                                </div>
+                              </div>
+                            </div>
+
+                            <p className="text -gray-600">{review.comment}</p>
+
+                            <Separator className="my-4" />
+                          </div>
+                        ))}
+                      </motion.div>
+                    </TabsContent>
+                  </Tabs>
+                </CardContent>
+              </Card>
+            </AnimatePresence>
             <div>
               <h3 className="text-lg font-semibold mb-4">Similar Products</h3>
               <div className="space-y-4">
